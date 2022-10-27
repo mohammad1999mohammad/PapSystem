@@ -18,7 +18,7 @@
     "@nuxtjs/ngrok": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.25.3",
-    "nuxt": "^2.15.8",
+    "nuxt": "^2.13.3",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.19.4",
     "@nuxtjs/eslint-config": "^11.0.0",
     "@nuxtjs/eslint-module": "^3.1.0",
     "@nuxtjs/vuetify": "^1.12.3",
