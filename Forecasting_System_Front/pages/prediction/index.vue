@@ -71,7 +71,6 @@
         ></v-select>
         <v-btn
           block
-          :loading="issending"
           color="primary"
           class="mt-2 font-weight-black"
           elevation="2"
@@ -81,7 +80,6 @@
         >
         <v-btn
           block
-          :loading="isreceiving"
           color="secondary"
           class="mt-8 font-weight-black black--text"
           elevation="2"
@@ -154,9 +152,7 @@ export default {
       month: null,
       week: null,
       day: null,
-      issending: false,
-      isreceiving: false,
-      url: 'http://192.168.43.54:8000',
+      url: process.env.myurl,
       products_list: [
         {
           persian_name: 'ماست سبوی 1800 پر چرب',
@@ -222,7 +218,6 @@ export default {
       )
     },
     send_inputs() {
-      this.issending = true
       const url = this.url + '/add-item'
       const headers = {
         accept: 'application/json',
@@ -242,21 +237,18 @@ export default {
         .then((response) => response.data)
         .then((data) => {
           console.log(data)
-          this.issending = false
         })
-        .catch((this.issending = false))
+        .catch(console.log('error'))
     },
     receive_result() {
-      this.isreceiving = true
       const url = this.url + '/get-result'
       this.$axios
         .get(url)
         .then((response) => {
           console.log('success')
           this.results_list = response.data.forecast
-          this.isreceiving = false
         })
-        .catch((this.isreceiving = false))
+        .catch(console.log('error'))
     },
   },
 }

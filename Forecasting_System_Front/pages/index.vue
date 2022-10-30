@@ -12,7 +12,6 @@
 <script>
 export default {
   name: 'IndexPage',
-  // middleware: 'myMiddleware',
   data() {
     return {}
   },

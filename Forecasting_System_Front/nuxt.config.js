@@ -6,7 +6,7 @@ export default {
 
   router: {
     // ran before every route on both client and server
-    middleware: ['myMiddleware'] 
+    middleware: ['direction']
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -20,7 +20,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - هراز',
+    titleTemplate: '%s - پاپ',
     title: 'سامانه پاپ',
     meta: [
       { charset: 'utf-8' },
@@ -60,6 +60,8 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    // https://www.npmjs.com/package/nuxt-leaflet
+    'nuxt-leaflet',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -73,9 +75,9 @@ export default {
 
   // },
 
-  // env: {
-  //   baseUrl:'http://127.0.0.1:8000'
-  // },
+  env: {
+    myurl: process.env.BASE_URL
+  },
 
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -107,7 +109,6 @@ export default {
         light: {
           primary: colors.indigo.darken4,
           secondary: colors.lime.accent4,
-
           accent: colors.grey.lighten3,
           info: colors.teal.darken1,
           warning: colors.amber.base,
@@ -120,8 +121,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, ctx) {
 
-    // ----------------------
+    }
   },
 
   server: {

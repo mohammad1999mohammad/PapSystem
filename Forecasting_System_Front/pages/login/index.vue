@@ -51,7 +51,6 @@
         <h4 v-if="show_login_message" class="red--text mt-6 text-center">
           {{ login_message }}
         </h4>
-        <h3 v-if="$store.state.login == 'Yes'">تست ویو ایکس</h3>
       </v-col>
     </v-row>
   </div>
@@ -59,14 +58,17 @@
 
 
 <script>
+// import { mapGetters } from 'vuex';
+
 export default {
   name: 'LoginPage',
+  middleware: 'auth',
   data() {
     return {
       username: null,
       password: null,
       show: false,
-      url: 'http://192.168.43.54:8000',
+      url: process.env.myurl,
       user_name: null,
       pass_word: null,
       login_state: false,
@@ -74,8 +76,14 @@ export default {
       show_login_message: false,
     }
   },
+
+  // computed: {
+  //   ...mapGetters('getloginstate'),
+  // },
+
   methods: {
     login() {
+      console.log(this.url)
       const url = this.url + '/login'
       const headers = {
         accept: 'application/json',
@@ -93,6 +101,7 @@ export default {
           this.login_state = data.login
           this.login_message = data.message
           if (this.login_state) {
+            console.log(this.$store.state.login)
             this.show_login_message = false
             this.$store.commit('enter')
             this.$router.push('/prediction')
@@ -101,7 +110,7 @@ export default {
             this.show_login_message = true
           }
         })
-        .catch((error) => console.log(error))
+        .catch((error) => console.log('error', error))
     },
   },
 }

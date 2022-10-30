@@ -7,12 +7,12 @@
       ></v-app-bar-nav-icon>
       <v-toolbar-title>سامانه پاپ</v-toolbar-title>
       <v-spacer></v-spacer>
-      <img
+      <!-- <img
         src="../static/Haraz_dairy.png"
         height="60"
         width="60"
         class="mb-1"
-      />
+      /> -->
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" right app temporary>
@@ -29,6 +29,22 @@
             <v-list-item-title>پیش بینی</v-list-item-title>
           </v-list-item>
           <!-- </NuxtLink> -->
+          <!-- <NuxtLink to="/"> -->
+          <v-list-item to="/snapexpress">
+            <v-list-item-icon>
+              <v-icon>mdi-content-paste</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>اسنپ اکسپرس</v-list-item-title>
+          </v-list-item>
+          <!-- </NuxtLink> -->
+          <!-- <NuxtLink to="/"> -->
+          <v-list-item @click="logout()">
+            <v-list-item-icon>
+              <v-icon>mdi-power</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>خروج</v-list-item-title>
+          </v-list-item>
+          <!-- </NuxtLink> -->
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -40,10 +56,10 @@
     </v-main>
 
     <v-footer class="mt-8">
-      <span class="copy black--text"
+      <!-- <span class="copy black--text"
         >&copy; کلیه حقوق این وب‌سایت متعلق به شرکت فرآورده‌های لبنی دوشه آمل
         (هراز) است.</span
-      >
+      > -->
     </v-footer>
   </v-app>
 </template>
@@ -56,6 +72,11 @@ export default {
       drawer: false,
       group: null,
     }
+  },
+  methods: {
+    logout() {
+      this.$store.commit('exit')
+    },
   },
 }
 </script>
