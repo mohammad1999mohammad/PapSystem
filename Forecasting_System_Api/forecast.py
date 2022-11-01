@@ -59,6 +59,27 @@ def forecast(product_name, area, promotion, month, week, day):
                        'Karaj S': 'کرج سایت', 'Tehran S': 'تهران سایت', 'Gorgan H': 'گرگان هیبرید', 'Mashhad H': 'مشهد هیبرید'
                        }
 
+###########################################################################
+
+
+    telorance_file = open(HERE + '\\telorance.txt', 'r')
+
+    telorances = telorance_file.read().split('\n')
+
+    telorance_file.close()
+
+    print('tel',telorances)
+
+    xg_tel = float(telorances[1])
+
+    line_tel = float(telorances[3])
+
+    # print(xg_tel)
+
+    # print(line_tel)
+
+###########################################################################
+
     stats_df = pd.read_excel(HERE + '\stats.xlsx', index_col=0)
 
     stats_dict = {}
@@ -155,7 +176,7 @@ def forecast(product_name, area, promotion, month, week, day):
         # print('Lower Limit In Target Center Is : \t',(xgpredict - 2.40) * Centers[Centers['Center']==new_centername]['count'].iloc[0],'\n\n')
 
         result['forecast'][-1]['xgboost']['low'] = round(float(
-            (xgpredict - 2.40) * Centers[Centers['Center'] == new_centername]['count'].iloc[0]))
+            (xgpredict - xg_tel) * Centers[Centers['Center'] == new_centername]['count'].iloc[0]))
 
         # low_xg.append((xgpredict - 2.40) * Centers[Centers['Center']==new_centername]['count'].iloc[0])
 
@@ -169,7 +190,7 @@ def forecast(product_name, area, promotion, month, week, day):
         # print('Upper Limit In Target Center Is : \t',(xgpredict + 2.40) * Centers[Centers['Center']==new_centername]['count'].iloc[0],'\n\n')
 
         result['forecast'][-1]['xgboost']['up'] = round(float(
-            (xgpredict + 2.40) * Centers[Centers['Center'] == new_centername]['count'].iloc[0]))
+            (xgpredict + xg_tel) * Centers[Centers['Center'] == new_centername]['count'].iloc[0]))
 
         # up_xg.append((xgpredict + 2.40) * Centers[Centers['Center']==new_centername]['count'].iloc[0])
 
@@ -203,7 +224,7 @@ def forecast(product_name, area, promotion, month, week, day):
         # print('Lower Limit In Target Center Is : \t',(predict - 2.87) * Centers[Centers['Center']==new_centername]['count'].iloc[0],'\n\n')
 
         result['forecast'][-1]['linear']['low'] = round(float(
-            (predict - 2.87) * Centers[Centers['Center'] == new_centername]['count'].iloc[0]))
+            (predict - line_tel) * Centers[Centers['Center'] == new_centername]['count'].iloc[0]))
 
         # low_linear.append((predict - 2.87) * Centers[Centers['Center']==new_centername]['count'].iloc[0])
 
@@ -217,7 +238,7 @@ def forecast(product_name, area, promotion, month, week, day):
         # print('Upper Limit In Target Center Is : \t',(predict + 2.87) * Centers[Centers['Center']==new_centername]['count'].iloc[0],'\n\n')
 
         result['forecast'][-1]['linear']['up'] = round(float(
-            (predict + 2.87) * Centers[Centers['Center'] == new_centername]['count'].iloc[0]))
+            (predict + line_tel) * Centers[Centers['Center'] == new_centername]['count'].iloc[0]))
 
         # up_linear.append((predict + 2.87) * Centers[Centers['Center']==new_centername]['count'].iloc[0])
 

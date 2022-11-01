@@ -164,6 +164,36 @@ export default {
           english_name: 'mast-saboo-kam-1800',
           id: 2,
         },
+        {
+          persian_name: 'ماست ست 750 کم چرب',
+          english_name: 'mast-set-kam-750',
+          id: 3,
+        },
+        {
+          persian_name: 'ماست ست 750 پر چرب',
+          english_name: 'mast-set-por-750',
+          id: 4,
+        },
+        {
+          persian_name: 'ماست ست 1800 کم چرب',
+          english_name: 'mast-set-kam-1800',
+          id: 5,
+        },
+        {
+          persian_name: 'ماست ست 1800 پر چرب',
+          english_name: 'mast-set-por-1800',
+          id: 6,
+        },
+        {
+          persian_name: 'شیر تتراپک 1 لیتری کم چرب',
+          english_name: 'shir-tetra-kam-1',
+          id: 7,
+        },
+        {
+          persian_name: 'شیر تتراپک 1 لیتری پر چرب',
+          english_name: 'shir-tetra-por-1',
+          id: 8,
+        },
       ],
       areas_list: [
         { persian_name: 'شمال غرب', english_name: 'shomal-gharb', id: 0 },

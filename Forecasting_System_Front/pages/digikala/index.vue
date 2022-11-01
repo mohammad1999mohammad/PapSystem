@@ -48,7 +48,7 @@ export default {
           align: 'center',
           sortable: false,
           value: 'product_persian_title',
-          width: "400px"
+          width: '400px',
         },
         {
           text: 'نمره',
@@ -61,99 +61,97 @@ export default {
           align: 'center',
           sortable: true,
           value: 'product_star_number_of_scorer',
-          width: "100px"
+          width: '100px',
         },
         {
           text: 'وضعیت موجودی',
           align: 'center',
           sortable: true,
           value: 'product_status',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'برند',
           align: 'center',
           sortable: true,
           value: 'product_brand',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'پیشنهاد فروش',
           align: 'center',
           sortable: true,
           value: 'product_offer',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'کمترین قیمت در ماه گذشته',
           align: 'center',
           sortable: true,
           value: 'product_min_price_last_month',
-          width: "200px"
+          width: '200px',
         },
         {
           text: 'نرخ رضایت',
           align: 'center',
           sortable: true,
           value: 'product_satisfy_rate',
-          width: "100px"
+          width: '100px',
         },
         {
           text: 'تعداد آرا رضایت',
           align: 'center',
           sortable: true,
           value: 'product_satisfy_number_of_scorer',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'هدیه دیجی پلاس',
           align: 'center',
           sortable: true,
           value: 'product_digiplus_cashback',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'امتیاز دیجی کلاب',
           align: 'center',
           sortable: true,
           value: 'product_digiclub_point',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'قیمت فروش',
           align: 'center',
           sortable: true,
           value: 'product_selling_price',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'درصد تخفیف',
           align: 'center',
           sortable: true,
           value: 'product_discount_percent',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'قیمت اصلی',
           align: 'center',
           sortable: true,
           value: 'product_rrp_price',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'حداکثر سفارش',
           align: 'center',
           sortable: true,
           value: 'product_order_limit',
-          width: "150px"
+          width: '150px',
         },
         {
           text: 'گروه محصول',
           align: 'center',
-          sortable: true,
-          filterable:true,
           value: 'product_group',
-          width: "150px"
+          width: '150px',
         },
       ]
     },
@@ -191,8 +189,7 @@ export default {
 
 
 <style scoped>
-
-.v-data-table { 
+.v-data-table {
   overflow-x: auto !important;
 }
 </style>

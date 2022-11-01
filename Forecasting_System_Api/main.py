@@ -79,14 +79,19 @@ def login(user: User):
     global users
     user_name = user.username
     pass_word = user.password
+    is_there = 'no'
     for item in users:
         if(item['username'] == user_name):
             if(item['password'] == pass_word):
+                is_there = 'yes'
                 return ({'message': 'ورود موفق', 'login': True})
             else:
+                is_there = 'yes'
                 return({'message': 'رمز عبور اشتباه است', 'login': False})
         else:
-            return ({'message': 'نام کاربری نامعتبر است', 'login': False})
+            pass
+    if(is_there=='no'):
+        return ({'message': 'نام کاربری نامعتبر است', 'login': False})
 
 
 @app.get('/sxlocation')
@@ -144,9 +149,10 @@ def sxlocationstores(latitude: float = Query(default=None, title='Latitude', des
 
         try:
             location_stores_base_dict = json.loads(
-                (requests.get(location_stores_base_url)).text)
+                (requests.get(location_stores_base_url,timeout=3)).text)
         except:
-            time.sleep(0.5)
+            # time.sleep(0.5)
+            pass
 
     stores_count = location_stores_base_dict['data']['count']
 
@@ -165,10 +171,11 @@ def sxlocationstores(latitude: float = Query(default=None, title='Latitude', des
 
         while (items_list == '---'):
             try:
-                items_list = (json.loads((requests.get(location_stores_url)).text))[
+                items_list = (json.loads((requests.get(location_stores_url,timeout=3)).text))[
                     'data']['finalResult']
             except:
-                time.sleep(1)
+                # time.sleep(1)
+                pass
 
         for item in items_list:
 
@@ -328,7 +335,7 @@ def sxstoreproducts(storecode: str = Query(default=None, title='StoreCode', desc
     while (number_of_products == '---'):
         try:
             number_of_products = json.loads(requests.get(
-                products_base_url).text)["data"]["count"]
+                products_base_url,timeout=3).text)["data"]["count"]
         except:
             # time.sleep(0.5)
             pass
@@ -344,7 +351,7 @@ def sxstoreproducts(storecode: str = Query(default=None, title='StoreCode', desc
 
         while (products_list == '---'):
             try:
-                products_list = (json.loads(requests.get(products_url).text))[
+                products_list = (json.loads(requests.get(products_url,timeout=3).text))[
                     "data"]["finalResult"]
             except:
                 # time.sleep(0.5)
