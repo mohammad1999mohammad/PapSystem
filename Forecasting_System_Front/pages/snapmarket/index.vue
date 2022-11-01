@@ -27,7 +27,7 @@
       >
       <v-row>
         <v-col
-          v-for="store in $store.state.sx_location_stores"
+          v-for="store in $store.state.sm_location_stores"
           :key="store.store_id"
           cols="12"
           lg="4"
@@ -38,40 +38,35 @@
             :to="$route.path + '/' + store.store_code"
             rounded
             hover
-            height="600"
+            height="460"
             class="mx-auto mt-6"
           >
             <v-card-subtitle class="primary--text font-weight-bold"
-              >نام فروشگاه : {{ store.store_name }}
+              >نام فروشگاه : {{ store.store_title }}
             </v-card-subtitle>
             <v-card-subtitle class="primary--text font-weight-bold"
-              >نوع فروشگاه : {{ store.store_type }}
+              >نوع فروشگاه : {{ store.store_persian_type }}
             </v-card-subtitle>
             <v-card-subtitle class="primary--text font-weight-bold"
-              >منطقه فروشگاه : {{ store.store_area }}
+              >منطقه فروشگاه : {{ store.store_short_address }}
             </v-card-subtitle>
             <v-card-subtitle class="primary--text font-weight-bold"
               >تلفن فروشگاه : {{ store.store_phone }}
-            </v-card-subtitle>
-            <v-card-subtitle class="primary--text font-weight-bold"
-              >امتیاز فروشگاه : {{ store.store_rate_five }}
-            </v-card-subtitle>
-            <v-card-subtitle class="primary--text font-weight-bold"
-              >تعداد کامنت های فروشگاه : {{ store.store_comment_count }}
-            </v-card-subtitle>
-            <v-card-subtitle class="primary--text font-weight-bold"
-              >تعداد رای به فروشگاه : {{ store.store_vote_count }}
             </v-card-subtitle>
             <v-card-subtitle class="primary--text font-weight-bold"
               >هزینه ارسال فروشگاه : {{ store.store_delivery_fee }} تومان
             </v-card-subtitle>
             <v-card-subtitle class="primary--text font-weight-bold"
               >حداقل مقدار خرید فروشگاه :
-              {{ store.store_min_price_order }} تومان
+              {{ store.store_min_basket_price }} تومان
             </v-card-subtitle>
             <v-card-subtitle class="primary--text font-weight-bold"
-              >وضعیت باز بودن فروشگاه :
-              {{ store.store_open ? 'باز' : 'بسته' }}
+              >حداقل مقدار خرید ارسال رایگان فروشگاه :
+              {{ store.store_min_price_free_delivery }} تومان
+            </v-card-subtitle>
+            <v-card-subtitle class="primary--text font-weight-bold"
+              >حداقل مقدار خرید فروشگاه :
+              {{ store.store_min_basket_price }} تومان
             </v-card-subtitle>
           </v-card>
         </v-col>
@@ -83,7 +78,7 @@
 
 <script>
 export default {
-  name: 'SnapexpressPage',
+  name: 'SnapmarketPage',
   middleware: 'auth',
   data() {
     return {
@@ -115,7 +110,7 @@ export default {
     fetchstores() {
       const url =
         this.base_url +
-        '/sxlocationstores' +
+        '/smlocationstores' +
         '?' +
         `latitude=${this.$store.state.center.lat}` +
         '&' +
@@ -126,7 +121,7 @@ export default {
         .then((response) => {
           console.log('success')
           // this.location_stores = response.data.location_stores
-          this.$store.commit('sx_getstores', response.data.location_stores)
+          this.$store.commit('sm_getstores', response.data.location_stores)
         })
         .catch((error) => {
           console.log(error)

@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'SnapexpressstorePage',
+  name: 'SnapmarketstorePage',
   middleware: 'auth',
   data() {
     return {
@@ -51,59 +51,42 @@ export default {
           value: 'product_name',
         },
         {
-          text: 'نمره',
-          align: 'center',
-          sortable: false,
-          value: 'product_rating',
-        },
-        {
-          text: 'مقدار تخفیف',
+          text: 'ماکسیمم سفارش',
           align: 'center',
           sortable: true,
-          value: 'product_discount',
+          value: 'product_max_order',
+        },
+        {
+          text: 'قیمت فروش',
+          align: 'center',
+          sortable: true,
+          value: 'product_selling_price',
+        },
+        {
+          text: 'قیمت اصلی',
+          align: 'center',
+          sortable: true,
+          value: 'product_main_price',
         },
         {
           text: 'درصد تخفیف',
           align: 'center',
           sortable: true,
-          value: 'product_discount_rate',
+          value: 'product_discount_percent',
         },
         {
-          text: 'حجم',
-          align: 'center',
-          sortable: false,
-          value: 'product_volume',
-        },
-        {
-          text: 'قیمت',
+          text: 'برند',
           align: 'center',
           sortable: true,
-          value: 'product_price',
+          value: 'product_brand_name',
         },
-        // {
-        //   text: 'تعداد کامنت',
-        //   align: 'center',
-        //   sortable: false,
-        //   value: 'product_comment_count',
-        // },
         {
           text: 'گروه',
           align: 'center',
           sortable: true,
           value: 'product_category',
         },
-        {
-          text: 'برند',
-          align: 'center',
-          sortable: true,
-          value: 'product_brand',
-        },
-        {
-          text: 'موجودی',
-          align: 'center',
-          sortable: true,
-          value: 'product_stock',
-        },
+        
       ]
     },
   },
@@ -120,7 +103,7 @@ export default {
       console.log('start')
       const url =
         this.base_url +
-        '/sxstoreproducts' +
+        '/smstoreproducts' +
         '?' +
         `storecode=${this.code}` 
         // '&' +

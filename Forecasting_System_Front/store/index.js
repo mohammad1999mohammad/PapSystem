@@ -1,6 +1,7 @@
 export const state = () => ({
   login: null,
-  location_stores: [],
+  sx_location_stores: [],
+  sm_location_stores: [],
   center: { lat: 35.85344, lng: 51.462669 },
 })
 
@@ -27,13 +28,22 @@ export const mutations = {
     state.login = localStorage.getItem('login')
   },
 
-  getstores(state, arr) {
-    state.location_stores = arr
+  sx_getstores(state, arr) {
+    state.sx_location_stores = arr
     console.log('done')
     console.log(arr)
 
 
   },
+
+  sm_getstores(state, arr) {
+    state.sm_location_stores = arr
+    console.log('done')
+    console.log(arr)
+
+
+  },
+
   changecenter(state, cen) {
     state.center = cen
     console.log('cen', cen)

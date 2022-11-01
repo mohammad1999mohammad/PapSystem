@@ -38,6 +38,22 @@
           </v-list-item>
           <!-- </NuxtLink> -->
           <!-- <NuxtLink to="/"> -->
+          <v-list-item to="/snapmarket">
+            <v-list-item-icon>
+              <v-icon>mdi-content-paste</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>اسنپ مارکت</v-list-item-title>
+          </v-list-item>
+          <!-- </NuxtLink> -->
+          <!-- <NuxtLink to="/"> -->
+          <v-list-item to="/digikala">
+            <v-list-item-icon>
+              <v-icon>mdi-content-paste</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>دیجی کالا</v-list-item-title>
+          </v-list-item>
+          <!-- </NuxtLink> -->
+          <!-- <NuxtLink to="/"> -->
           <v-list-item @click="logout()">
             <v-list-item-icon>
               <v-icon>mdi-power</v-icon>
