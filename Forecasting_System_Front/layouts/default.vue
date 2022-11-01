@@ -5,7 +5,7 @@
         v-if="$store.state.login === 'Yes'"
         @click="drawer = true"
       ></v-app-bar-nav-icon>
-      <v-toolbar-title>سامانه پاپ</v-toolbar-title>
+      <v-toolbar-title>پاپ</v-toolbar-title>
       <v-spacer></v-spacer>
       <!-- <img
         src="../static/Haraz_dairy.png"
