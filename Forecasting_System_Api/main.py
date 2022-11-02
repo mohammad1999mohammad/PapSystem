@@ -56,22 +56,21 @@ def get_items():
     return items
 
 
-@app.post('/add-item')
-def add_item(item: Item):
-    global items
-    items = {}
-    # if(item_id in items):
-    #     return {'Error': 'Item ID already exist'}
+@app.post('/get-result')
+def get_result(item: Item):
 
-    items[1] = item
-    return {'Data': 'Success'}
+    return (forecast(item.product, item.area, item.promotion, item.month, item.week, item.day))
+    # global items
+    # items = {}
+    # items[1] = item
+    # return {'Data': 'Success'}
+    
 
-
-@app.get('/get-result')
-def get_result():
-    global items
-    return (forecast(items[1].product, items[1].area, items[1].promotion, items[1].month, items[1].week, items[1].day))
-    # return {"1":'hello'}
+# @app.get('/get-result')
+# def get_result():
+#     global items
+#     return (forecast(items[1].product, items[1].area, items[1].promotion, items[1].month, items[1].week, items[1].day))
+#     # return {"1":'hello'}
 
 
 @app.post('/login')

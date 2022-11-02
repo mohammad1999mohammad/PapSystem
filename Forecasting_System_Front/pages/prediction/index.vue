@@ -69,7 +69,7 @@
           background-color="grey lighten-4"
           @change="abc()"
         ></v-select>
-        <v-btn
+        <!-- <v-btn
           block
           color="primary"
           class="mt-2 font-weight-black"
@@ -77,33 +77,21 @@
           x-large
           @click="send_inputs()"
           >ارسال اطلاعات</v-btn
-        >
+        >-->
         <v-btn
           block
           color="secondary"
           class="mt-8 font-weight-black black--text"
           elevation="2"
           x-large
-          @click="receive_result()"
-          >دریافت نتایج</v-btn
-        >
+          @click="send_inputs()"
+        >دریافت پیش بینی</v-btn>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12">
-        <h4
-          v-if="results_list.length > 0"
-          class="mt-8"
-          align="center"
-          justify="center"
-        >
-          نتایج پیش بینی به شرح زیر میباشد
-        </h4>
-        <v-simple-table
-          v-for="result in results_list"
-          :key="result.center"
-          class="mt-8 table"
-        >
+      <v-col cols="12" v-if="results_list.length > 0">
+        <h4 class="mt-8" align="center" justify="center">نتایج پیش بینی به شرح زیر میباشد</h4>
+        <v-simple-table v-for="result in results_list" :key="result.center" class="mt-8 table">
           <template #default>
             <thead>
               <tr>
@@ -157,43 +145,43 @@ export default {
         {
           persian_name: 'ماست سبوی 1800 پر چرب',
           english_name: 'mast-saboo-por-1800',
-          id: 1,
+          id: 1
         },
         {
           persian_name: 'ماست سبوی 1800 کم چرب',
           english_name: 'mast-saboo-kam-1800',
-          id: 2,
+          id: 2
         },
         {
           persian_name: 'ماست ست 750 کم چرب',
           english_name: 'mast-set-kam-750',
-          id: 3,
+          id: 3
         },
         {
           persian_name: 'ماست ست 750 پر چرب',
           english_name: 'mast-set-por-750',
-          id: 4,
+          id: 4
         },
         {
           persian_name: 'ماست ست 1800 کم چرب',
           english_name: 'mast-set-kam-1800',
-          id: 5,
+          id: 5
         },
         {
           persian_name: 'ماست ست 1800 پر چرب',
           english_name: 'mast-set-por-1800',
-          id: 6,
+          id: 6
         },
         {
           persian_name: 'شیر تتراپک 1 لیتری کم چرب',
           english_name: 'shir-tetra-kam-1',
-          id: 7,
+          id: 7
         },
         {
           persian_name: 'شیر تتراپک 1 لیتری پر چرب',
           english_name: 'shir-tetra-por-1',
-          id: 8,
-        },
+          id: 8
+        }
       ],
       areas_list: [
         { persian_name: 'شمال غرب', english_name: 'shomal-gharb', id: 0 },
@@ -201,7 +189,7 @@ export default {
         { persian_name: 'جنوب', english_name: 'jonoob', id: 2 },
         { persian_name: 'غرب', english_name: 'gharb', id: 3 },
         { persian_name: 'مرکز', english_name: 'markaz', id: 4 },
-        { persian_name: 'شرق', english_name: 'shargh', id: 5 },
+        { persian_name: 'شرق', english_name: 'shargh', id: 5 }
       ],
       months_list: [
         { persian_name: 'فروردین', english_name: 'farvardin', id: 1 },
@@ -215,13 +203,13 @@ export default {
         { persian_name: 'آذر', english_name: 'azar', id: 9 },
         { persian_name: 'دی', english_name: 'dey', id: 10 },
         { persian_name: 'بهمن', english_name: 'bahman', id: 11 },
-        { persian_name: 'اسفند', english_name: 'esfand', id: 12 },
+        { persian_name: 'اسفند', english_name: 'esfand', id: 12 }
       ],
       weeks_list: [
         { persian_name: 'هفته اول ماه', english_name: 'first-week', id: 1 },
         { persian_name: 'هفته دوم ماه', english_name: 'second-week', id: 2 },
         { persian_name: 'هفته سوم ماه', english_name: 'third-week', id: 3 },
-        { persian_name: 'هفته چهارم ماه', english_name: 'fourth-week', id: 4 },
+        { persian_name: 'هفته چهارم ماه', english_name: 'fourth-week', id: 4 }
       ],
       days_list: [
         { persian_name: 'شنبه', english_name: 'saturday', id: 1 },
@@ -230,9 +218,9 @@ export default {
         { persian_name: 'سه شنبه', english_name: 'tuesday', id: 4 },
         { persian_name: 'چهارشنبه', english_name: 'wednesday', id: 5 },
         { persian_name: 'پنجشنبه', english_name: 'thursday', id: 6 },
-        { persian_name: 'جمعه', english_name: 'friday', id: 7 },
+        { persian_name: 'جمعه', english_name: 'friday', id: 7 }
       ],
-      results_list: [],
+      results_list: []
     }
   },
   methods: {
@@ -248,10 +236,10 @@ export default {
       )
     },
     send_inputs() {
-      const url = this.url + '/add-item'
+      const url = this.url + '/get-result'
       const headers = {
         accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }
       const body = {
         product: this.product_name,
@@ -259,28 +247,28 @@ export default {
         promotion: parseFloat(this.promotion) / 100, // parsing is important just for promotion
         month: parseInt(this.month),
         week: parseInt(this.week),
-        day: parseInt(this.day),
+        day: parseInt(this.day)
       }
 
       this.$axios
         .post(url, body, { headers })
-        .then((response) => response.data)
-        .then((data) => {
-          console.log(data)
+        .then(data => {
+          this.results_list = data.data.forecast
+          console.log(data.data.forecast)
         })
-        .catch(console.log('error'))
-    },
-    receive_result() {
-      const url = this.url + '/get-result'
-      this.$axios
-        .get(url)
-        .then((response) => {
-          console.log('success')
-          this.results_list = response.data.forecast
-        })
-        .catch(console.log('error'))
-    },
-  },
+        .catch(error => console.log('error', error))
+    }
+    // receive_result() {
+    //   const url = this.url + '/get-result'
+    //   this.$axios
+    //     .get(url)
+    //     .then((response) => {
+    //       console.log('success')
+    //       this.results_list = response.data.forecast
+    //     })
+    //     .catch(console.log('error'))
+    // },
+  }
 }
 </script>
 

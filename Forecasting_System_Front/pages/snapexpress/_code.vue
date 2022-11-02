@@ -8,7 +8,7 @@
           item-key="product_id"
           class="elevation-1"
           hide-default-footer
-          :items-per-page="2000"
+          :items-per-page="3000"
           :loading="loading"
           :multi-sort="true"
           loading-text="در حال دریافت اطلاعات"

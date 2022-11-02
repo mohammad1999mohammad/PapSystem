@@ -14,6 +14,7 @@ from sklearn.preprocessing import LabelEncoder
 
 import json
 
+
 warnings.filterwarnings('ignore')
 
 
@@ -29,10 +30,11 @@ def forecast(product_name, area, promotion, month, week, day):
 
     xgmodel = pickle.load(open(HERE + '\{}XG.sav'.format(product_name), "rb"))
 
+    # xgmodel = joblib.load(open(HERE + '\{}XG.sav'.format(product_name), "rb"))
+
     # print(HERE + '\{}XG.sav'.format(product_name))
 
-    model = pickle.load(
-        open(HERE + '\{}Linear.sav'.format(product_name), "rb"))
+    model = pickle.load(open(HERE + '\{}Linear.sav'.format(product_name), "rb"))
 
     # print(HERE + '\{}Linear.sav'.format(product_name))
 
@@ -61,14 +63,13 @@ def forecast(product_name, area, promotion, month, week, day):
 
 ###########################################################################
 
-
     telorance_file = open(HERE + '\\telorance.txt', 'r')
 
     telorances = telorance_file.read().split('\n')
 
     telorance_file.close()
 
-    print('tel',telorances)
+    # print('tel',telorances)
 
     xg_tel = float(telorances[1])
 
@@ -138,7 +139,7 @@ def forecast(product_name, area, promotion, month, week, day):
     for i in Areas[list(Areas)[Area_code]]:
 
         new_centername = i
-        
+
         persian_centername = persian_centers[new_centername]
 
         # result[new_centername] = {}
@@ -279,4 +280,4 @@ def forecast(product_name, area, promotion, month, week, day):
     # print('')
 
 
-# forecast('mast-saboo-por-1800',3,0.12,3,4,5)
+# print(forecast('mast-saboo-kam-1800', 3, 0.12, 3, 4, 5))
