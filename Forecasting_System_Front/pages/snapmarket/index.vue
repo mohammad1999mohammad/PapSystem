@@ -85,6 +85,7 @@ export default {
       base_url: process.env.myurl,
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       zoom: 6,
+      number: 350,
     }
   },
 
@@ -95,6 +96,11 @@ export default {
     dynamicAnchor() {
       return [this.iconSize / 2, this.iconSize * 1.15]
     },
+    target() {
+      const value = this.number
+      if (!isNaN(value)) return Number(value)
+      else return value
+    }
   },
 
   mounted() {},
@@ -122,6 +128,7 @@ export default {
           console.log('success')
           // this.location_stores = response.data.location_stores
           this.$store.commit('sm_getstores', response.data.location_stores)
+          this.$vuetify.goTo(this.target)
         })
         .catch((error) => {
           console.log(error)

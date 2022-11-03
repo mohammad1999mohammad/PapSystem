@@ -87,7 +87,7 @@ export default {
       base_url: process.env.myurl,
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       zoom: 6,
-      number: 350
+      number: 350,
     }
   },
 

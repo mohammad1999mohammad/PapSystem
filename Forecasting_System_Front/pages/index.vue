@@ -2,7 +2,11 @@
   <div>
     <v-row justify="center" align="center">
       <v-col cols="12" class="mt-8">
-        <h5>صفحه اولیه</h5>
+        <NuxtLink to="/prediction">
+          <h2 class="text-center" >
+            ورود به صفحه پیش بینی
+          </h2>
+        </NuxtLink>
       </v-col>
     </v-row>
   </div>
@@ -12,6 +16,7 @@
 <script>
 export default {
   name: 'IndexPage',
+  middleware: 'auth',
   data() {
     return {}
   },
@@ -22,4 +27,19 @@ export default {
 
 
 <style scoped>
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
 </style>

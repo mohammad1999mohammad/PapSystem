@@ -81,7 +81,7 @@
         <v-btn
           block
           color="secondary"
-          class="mt-8 font-weight-black black--text"
+          class="mt-8 black--text font-weight-black"
           elevation="2"
           x-large
           @click="send_inputs()"
@@ -89,7 +89,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" v-if="results_list.length > 0">
+      <v-col v-if="results_list.length > 0" cols="12">
         <h4 class="mt-8" align="center" justify="center">نتایج پیش بینی به شرح زیر میباشد</h4>
         <v-simple-table v-for="result in results_list" :key="result.center" class="mt-8 table">
           <template #default>

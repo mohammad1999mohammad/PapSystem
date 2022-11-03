@@ -20,7 +20,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - پاپ',
+    titleTemplate: '%s هراز',
     title: 'سامانه پاپ',
     meta: [
       { charset: 'utf-8' },
@@ -82,8 +82,25 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    icon:{
+      fileName:'haraz.png',
+      sizes:[64, 120, 144, 152, 192, 384, 512],
+    },
+    meta: {
+      title: 'Pap',
+      author: 'MohammadHosein',
+      theme_color:'#AEEA00',
+    },
     manifest: {
-      lang: 'en',
+      name: 'پلتفرم ارائه پروژه',
+      short_name: 'پاپ هراز',
+      description: 'پلتفرم ارائه پروژه',
+      lang: 'en',   
+      start_url:'/login',
+      orientation:'portrait',  // landscape
+      background_color:'#AEEA00',
+      theme_color:'#AEEA00',
+      display: 'standalone',
     },
   },
 

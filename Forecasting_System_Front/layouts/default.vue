@@ -8,7 +8,7 @@
       <v-toolbar-title>پاپ</v-toolbar-title>
       <v-spacer></v-spacer>
       <img
-        src="../static/Haraz_dairy.png"
+        src="../static/haraz.png"
         height="60"
         width="60"
         class="mb-1"

@@ -15,4 +15,8 @@ export default function ({ store, redirect, route }) {
         return redirect('/login')
     }
 
+    if ((store.state.login === 'Yes') && (route.fullPath === '/login')) {
+        return redirect('/prediction')
+    }
+
 }
