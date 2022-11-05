@@ -7,12 +7,12 @@
       ></v-app-bar-nav-icon>
       <v-toolbar-title>پاپ</v-toolbar-title>
       <v-spacer></v-spacer>
-      <img
+      <!-- <img
         src="../static/haraz.png"
         height="60"
         width="60"
         class="mb-1"
-      />
+      /> -->
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" right app temporary>
@@ -72,10 +72,10 @@
     </v-main>
 
     <v-footer class="mt-8">
-      <span class="copy black--text"
+      <!-- <span class="copy black--text"
         >&copy; کلیه حقوق این وب‌سایت متعلق به شرکت فرآورده‌های لبنی دوشه آمل
         (هراز) است.</span
-      >
+      > -->
     </v-footer>
   </v-app>
 </template>

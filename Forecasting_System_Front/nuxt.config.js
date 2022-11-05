@@ -20,7 +20,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s هراز',
+    titleTemplate: '%s ',
     title: 'سامانه پاپ',
     meta: [
       { charset: 'utf-8' },
@@ -83,7 +83,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     icon:{
-      fileName:'haraz.png',
+      fileName:'icon.png',
       sizes:[64, 120, 144, 152, 192, 384, 512],
     },
     meta: {

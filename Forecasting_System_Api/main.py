@@ -64,7 +64,7 @@ def get_result(item: Item):
     # items = {}
     # items[1] = item
     # return {'Data': 'Success'}
-    
+
 
 # @app.get('/get-result')
 # def get_result():
@@ -89,7 +89,7 @@ def login(user: User):
                 return({'message': 'رمز عبور اشتباه است', 'login': False})
         else:
             pass
-    if(is_there=='no'):
+    if(is_there == 'no'):
         return ({'message': 'نام کاربری نامعتبر است', 'login': False})
 
 
@@ -148,12 +148,14 @@ def sxlocationstores(latitude: float = Query(default=None, title='Latitude', des
 
         try:
             location_stores_base_dict = json.loads(
-                (requests.get(location_stores_base_url,timeout=3)).text)
+                (requests.get(location_stores_base_url, timeout=3)).text)
         except:
             # time.sleep(0.5)
             pass
 
     stores_count = location_stores_base_dict['data']['count']
+
+    print(stores_count)
 
     location_stores = []
 
@@ -170,7 +172,7 @@ def sxlocationstores(latitude: float = Query(default=None, title='Latitude', des
 
         while (items_list == '---'):
             try:
-                items_list = (json.loads((requests.get(location_stores_url,timeout=3)).text))[
+                items_list = (json.loads((requests.get(location_stores_url, timeout=3)).text))[
                     'data']['finalResult']
             except:
                 # time.sleep(1)
@@ -293,7 +295,12 @@ def sxlocationstores(latitude: float = Query(default=None, title='Latitude', des
 
         page = page + 1
 
-    return({'location_stores': location_stores})
+    stores_code = []
+
+    for i in location_stores:
+        stores_code.append(i['store_code'])
+
+    return({'location_stores': location_stores, 'stores_code': stores_code})
 
 
 def extract_type(x):
@@ -334,7 +341,7 @@ def sxstoreproducts(storecode: str = Query(default=None, title='StoreCode', desc
     while (number_of_products == '---'):
         try:
             number_of_products = json.loads(requests.get(
-                products_base_url,timeout=3).text)["data"]["count"]
+                products_base_url, timeout=3).text)["data"]["count"]
         except:
             # time.sleep(0.5)
             pass
@@ -350,7 +357,7 @@ def sxstoreproducts(storecode: str = Query(default=None, title='StoreCode', desc
 
         while (products_list == '---'):
             try:
-                products_list = (json.loads(requests.get(products_url,timeout=3).text))[
+                products_list = (json.loads(requests.get(products_url, timeout=3).text))[
                     "data"]["finalResult"]
             except:
                 # time.sleep(0.5)
@@ -601,6 +608,7 @@ def status_translate(x):
     if(x == 'stop_production'):
         return 'توقف تولید'
 
+
 def offer_translate(x):
     if(x == 'none'):
         return 'معمولی'
@@ -609,33 +617,35 @@ def offer_translate(x):
     if(x == 'incredible'):
         return 'پیشنهاد شگفت انگیز'
 
+
 def rial_be_toman(x):
     try:
         return int(x/10)
     except:
         return '---'
 
+
 @app.get('/dkproducts')
 def dkproducts():
 
     group_translate = {
-    'khame': 'خامه',
-    'shir': 'شیر',
-    'mast': 'ماست',
-    'doogh': 'دوغ',
-    'panir': 'پنیر',
-    'kashk': 'کشک',
-    'deser': 'دسر',
-    'kareh': 'کره',
-}
+        'khame': 'خامه',
+        'shir': 'شیر',
+        'mast': 'ماست',
+        'doogh': 'دوغ',
+        'panir': 'پنیر',
+        'kashk': 'کشک',
+        'deser': 'دسر',
+        'kareh': 'کره',
+    }
 
     application_products = []
 
-    application_information = {'khame': {}, 'shir': {}, 'mast': {}, 'doogh': {}, 'panir': {}, 'kashk': {}, 'deser': {}, 'kareh': {}}
-
+    application_information = {'khame': {}, 'shir': {}, 'mast': {
+    }, 'doogh': {}, 'panir': {}, 'kashk': {}, 'deser': {}, 'kareh': {}}
 
     casting = {'khame': 'https://api.digikala.com/v1/categories/cream/search/?page=1', 'shir': 'https://api.digikala.com/v1/categories/milk/search/?page=1', 'mast': 'https://api.digikala.com/v1/categories/yogurt/search/?page=1', 'doogh': 'https://api.digikala.com/v1/categories/doogh/search/?page=1',
-            'panir': 'https://api.digikala.com/v1/categories/cheese/search/?page=1', 'kashk': 'https://api.digikala.com/v1/categories/whey/search/?page=1', 'deser': 'https://api.digikala.com/v1/categories/ready-dessert/search/?page=1', 'kareh': 'https://api.digikala.com/v1/categories/butter/search/?page=1'}
+               'panir': 'https://api.digikala.com/v1/categories/cheese/search/?page=1', 'kashk': 'https://api.digikala.com/v1/categories/whey/search/?page=1', 'deser': 'https://api.digikala.com/v1/categories/ready-dessert/search/?page=1', 'kareh': 'https://api.digikala.com/v1/categories/butter/search/?page=1'}
 
     for categ in list(application_information.keys()):
 
@@ -643,7 +653,8 @@ def dkproducts():
 
         while (base_dict == '---'):
             try:
-                base_dict = json.loads(requests.get(casting[categ], timeout=5).text)
+                base_dict = json.loads(requests.get(
+                    casting[categ], timeout=5).text)
             except:
                 time.sleep(0.1)
 
@@ -654,11 +665,11 @@ def dkproducts():
         application_information[categ]['category_id'] = base_data['category']['id']
         application_information[categ]['category_persian_title'] = base_data['category']['title_fa']
         application_information[categ]['category_english_title'] = base_data['category']['code']
-        application_information[categ]['brands'] = [{'brand_id': brand['id'], 'brand_persian_title':brand['title_fa'],'brand_english_title':brand['code']} for brand in base_data['filters']['brands']['options']]
-
+        application_information[categ]['brands'] = [{'brand_id': brand['id'], 'brand_persian_title':brand['title_fa'],
+                                                     'brand_english_title':brand['code']} for brand in base_data['filters']['brands']['options']]
 
         for product in base_data['products']:
-        
+
             product_dict = {}
 
             try:
@@ -682,7 +693,8 @@ def dkproducts():
             except:
                 product_dict['product_star_number_of_scorer'] = '---'
             try:
-                product_dict['product_status'] = status_translate(product['status'])
+                product_dict['product_status'] = status_translate(
+                    product['status'])
             except:
                 product_dict['product_status'] = '---'
             try:
@@ -690,11 +702,13 @@ def dkproducts():
             except:
                 product_dict['product_brand'] = '---'
             try:
-                product_dict['product_offer'] = offer_translate(product['data_layer']['dimension7'])
+                product_dict['product_offer'] = offer_translate(
+                    product['data_layer']['dimension7'])
             except:
                 product_dict['product_offer'] = '---'
             try:
-                product_dict['product_min_price_last_month'] = rial_be_toman(product['properties']['min_price_in_last_month'])
+                product_dict['product_min_price_last_month'] = rial_be_toman(
+                    product['properties']['min_price_in_last_month'])
             except:
                 product_dict['product_min_price_last_month'] = '---'
             try:
@@ -706,7 +720,8 @@ def dkproducts():
             except:
                 product_dict['product_satisfy_number_of_scorer'] = '---'
             try:
-                product_dict['product_digiplus_cashback'] = rial_be_toman(product['default_variant']['digiplus']['cash_back'])
+                product_dict['product_digiplus_cashback'] = rial_be_toman(
+                    product['default_variant']['digiplus']['cash_back'])
             except:
                 product_dict['product_digiplus_cashback'] = '---'
             try:
@@ -714,11 +729,13 @@ def dkproducts():
             except:
                 product_dict['product_digiclub_point'] = '---'
             try:
-                product_dict['product_selling_price'] = rial_be_toman(product['default_variant']['price']['selling_price'])
+                product_dict['product_selling_price'] = rial_be_toman(
+                    product['default_variant']['price']['selling_price'])
             except:
                 product_dict['product_selling_price'] = '---'
             try:
-                product_dict['product_rrp_price'] = rial_be_toman(product['default_variant']['price']['rrp_price'])
+                product_dict['product_rrp_price'] = rial_be_toman(
+                    product['default_variant']['price']['rrp_price'])
             except:
                 product_dict['product_rrp_price'] = '---'
             try:
@@ -746,7 +763,8 @@ def dkproducts():
             products_dict = '---'
             while (products_dict == '---'):
                 try:
-                    products_dict = json.loads(requests.get(url, timeout=5).text)
+                    products_dict = json.loads(
+                        requests.get(url, timeout=5).text)
                 except:
                     time.sleep(0.1)
 
@@ -777,7 +795,8 @@ def dkproducts():
                 except:
                     product_dict['product_star_number_of_scorer'] = '---'
                 try:
-                    product_dict['product_status'] = status_translate(product['status'])
+                    product_dict['product_status'] = status_translate(
+                        product['status'])
                 except:
                     product_dict['product_status'] = '---'
                 try:
@@ -785,11 +804,13 @@ def dkproducts():
                 except:
                     product_dict['product_brand'] = '---'
                 try:
-                    product_dict['product_offer'] = offer_translate(product['data_layer']['dimension7'])
+                    product_dict['product_offer'] = offer_translate(
+                        product['data_layer']['dimension7'])
                 except:
                     product_dict['product_offer'] = '---'
                 try:
-                    product_dict['product_min_price_last_month'] = rial_be_toman(product['properties']['min_price_in_last_month'])
+                    product_dict['product_min_price_last_month'] = rial_be_toman(
+                        product['properties']['min_price_in_last_month'])
                 except:
                     product_dict['product_min_price_last_month'] = '---'
                 try:
@@ -801,7 +822,8 @@ def dkproducts():
                 except:
                     product_dict['product_satisfy_number_of_scorer'] = '---'
                 try:
-                    product_dict['product_digiplus_cashback'] = rial_be_toman(product['default_variant']['digiplus']['cash_back'])
+                    product_dict['product_digiplus_cashback'] = rial_be_toman(
+                        product['default_variant']['digiplus']['cash_back'])
                 except:
                     product_dict['product_digiplus_cashback'] = '---'
                 try:
@@ -809,11 +831,13 @@ def dkproducts():
                 except:
                     product_dict['product_digiclub_point'] = '---'
                 try:
-                    product_dict['product_selling_price'] = rial_be_toman(product['default_variant']['price']['selling_price'])
+                    product_dict['product_selling_price'] = rial_be_toman(
+                        product['default_variant']['price']['selling_price'])
                 except:
                     product_dict['product_selling_price'] = '---'
                 try:
-                    product_dict['product_rrp_price'] = rial_be_toman(product['default_variant']['price']['rrp_price'])
+                    product_dict['product_rrp_price'] = rial_be_toman(
+                        product['default_variant']['price']['rrp_price'])
                 except:
                     product_dict['product_rrp_price'] = '---'
                 try:
@@ -831,9 +855,4 @@ def dkproducts():
 
                 application_products.append(product_dict)
 
-    return({'products':application_products})
-
-
-
-
-
+    return({'products': application_products})
